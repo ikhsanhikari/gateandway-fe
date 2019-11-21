@@ -3,6 +3,12 @@ class PostUi {
         this.list = list;
         this.commentContent = '';
     }
+    imageExists(image_url){
+        var http = new XMLHttpRequest();
+        http.open('HEAD', image_url, false);
+        http.send();
+        return http.status != 404;
+    }
 
     render(data) {
         var listPost = data.data;
@@ -14,7 +20,11 @@ class PostUi {
                 if (item.userComments.photoProfile == null) {
                     urlPhotoComment = `js/img/user.png`;
                 } else {
-                    urlPhotoComment = item.userComments.photoProfile;
+                    if(!imageExists(item.userComments.photoProfile)){
+                        urlPhotoComment = `js/img/user.png`;
+                    }else{
+                        urlPhotoComment = item.userComments.photoProfile;
+                    }
                 }
                 this.commentContent += `<div class="card">
                         <div class="card-body text-description block-comment">
@@ -29,14 +39,21 @@ class PostUi {
             })
 
             var urlPhoto = ``
-            if (item.users.photoProfile == null) {
+            if (item.users.photoProfile == null ) {
                 urlPhoto = `js/img/user.png`;
             } else {
-                urlPhoto = item.users.photoProfile;
+                if(!imageExists(item.users.photoProfile)){
+                    urlPhoto = `js/img/user.png`;
+                }else{
+                    urlPhoto = item.users.photoProfile;
+                }
             }
 
             postPhoto = ``;
             if(item.urlPhoto!=null && item.urlPhoto!=''){
+                if(!imageExists(item.urlPhoto)){
+                    item.urlPhoto = 'js/img/default_post_photo.png'
+                }
                 postPhoto = `<img class="card-img-top" src="`+item.urlPhoto+`" alt="Post Photo" >`;
             }
             var btnUpdatePost = ``

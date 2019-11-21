@@ -37,7 +37,7 @@ if (!findGetParameter('username')) {
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row" style="background-image: url(https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg);
+                        <div class="row" style="background-image: url(js/img/default_cover_photo.png);
                             height:20%;background-position: center;
                             background-repeat: no-repeat;
                             background-size: cover;" id="photoSampul">

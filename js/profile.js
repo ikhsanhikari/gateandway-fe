@@ -75,6 +75,13 @@ if (findGetParameter('username') != localStorage.getItem('username')) {
     btnCollabs.style.visibility = 'hidden'
 }
 
+function imageExists(image_url){
+    var http = new XMLHttpRequest();
+    http.open('HEAD', image_url, false);
+    http.send();
+    return http.status != 404;
+}
+
 function uploadSingleFile(file) {
     var formData = new FormData();
     formData.append("file", file);
@@ -442,8 +449,8 @@ async function getCover(userId) {
     const response = await fetch(baseURL + 'cover_photos/userId/' + userId).then((data) => data.json())
         .then((data) => {
             var url = '';
-            if (data.data == null) {
-                url = '';
+            if (data.data == null || !imageExists(data.data.url)) {
+                url = 'js/img/default_cover_photo.png';
             } else {
                 url = data.data.url;
             }
@@ -457,10 +464,14 @@ async function getProfile(userId) {
         .json())
         .then((data) => {
             var url = '';
-            if (data.data == null) {
+            if (data.data == null  ) {
                 url = 'js/img/user.png';
             } else {
-                url = data.data.url;
+                if(!imageExists(data.data.url)){
+                    url = 'js/img/user.png';
+                }else{
+                    url = data.data.url;
+                }
             }
             document.getElementById('photoProfile').src = url;
         })

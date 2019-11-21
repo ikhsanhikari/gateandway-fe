@@ -53,14 +53,18 @@
 
 .bgGeneralNav {
     background-color: #00BFFF;
-    /* background-color: #ffffff; */
+    /* background-color: black; */
     color: white;
 }
 
 .btnBgGeneral{
 	background-color: #00BFFF;
-    /* background-color: #ffffff; */
+    /* background-color: black; */
     color: white;
+}
+
+.cardColor{
+	background-color: pink;
 }
 
 .followButton {

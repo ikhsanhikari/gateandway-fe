@@ -1,8 +1,8 @@
-var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav fixed-top">
+var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav fixed-top ">
 <a class="navbar-brand" href="#" onclick="gohome()">
     <img src="js/img/gate_putih_3.png"  alt="">
 </a>
-<button class="navbar-toggler" type="button" 
+<button class="navbar-toggler " type="button" 
     data-toggle="collapse" 
     data-target="#navbarResponsive" 
     aria-controls="navbarResponsive" 
@@ -10,9 +10,9 @@ var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav 
     aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
  </button>
- <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav justify-content-end navbar-collapse" >
-        <li class="navbar-item">
+ <div class="collapse navbar-collapse " id="navbarResponsive">
+    <ul class="navbar-nav  navbar-collapse ml-auto " >
+    <li class="navbar-item">
         <div class="form-inline">
             <div class="input-group ">
                 <input type="text" class="form-control form-control-sm " placeholder="Search" list="dataUser"
@@ -23,7 +23,9 @@ var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav 
                 </div>
             </div>
         </div>
-        </li>
+    </li>
+    </ul>
+    <ul class="navbar-nav  navbar-collapse justify-content-center " >
         <li class="nav-item">
             <div class="dropdown">
                 <button type="button" class="btn text-white" id="requestIcon"
@@ -34,7 +36,9 @@ var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav 
                 data-content="<a href='#'>content</a>" 
                 data-html="true">
                     <span class="fas fa-user-plus text-white"></span> 
+                    Collabs Request
                     <span class="badge badge-danger" id="requestAmount"></span>
+                    
                 </button>
             </div>
         </li>
@@ -49,27 +53,24 @@ var navContent = ` <nav class="navbar navbar-expand-sm navbar-dark bgGeneralNav 
                 data-content="<a href='#'>content</a>" 
                 data-html="true">
                     <span class="fas fa-bell text-white"></span>
+                    Notification
                     <span class="badge badge-danger"
                         id="notifAmount"></span>
                 </button>
                 
             </div>
         </li>
-        <li class="nav-item">
-            <div class="dropleft">
-                <button type="button" class="btn text-white" data-toggle="dropdown">
-                    <span class="fas fa-cogs text-white"></span>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#" id="logoutAction"><span class="fas fa-sign-out-alt"></span>
-                        Log Out</a>
-                    <a class="dropdown-item" href="#" onclick="gotoProfile()"><span class="fas fa-user-alt"></span>
-                        Profile</a>
-                </div>
-            </div>
+        <li>
+            <button class="btn text-white" href="#" onclick="gotoProfile()"><span class="fas fa-user-alt"></span>
+            Profile</button>
         </li>
         <li class="nav-item">
-            <a href="`+baseURLWEB+`new_member.php" style="text-decoration:none; color:white">New Member</a>
+            <a href="`+baseURLWEB+`new_member.php" style="text-decoration:none; color:white">
+            <span class="fas fa-user-alt"></span> New member</a>
+        </li>
+        <li class="nav-item">
+            <button class="btn text-white" href="#" id="logoutAction"><span class="fas fa-sign-out-alt"></span>
+            Log Out</button>
         </li>
     </ul>
 </div>
