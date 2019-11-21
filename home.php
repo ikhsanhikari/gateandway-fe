@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <div class="d-flex flex-row">
                             <div class="p-2">
-                                <img src="" id="imgPost" width="50" height="50" alt="">
+                                <img src="" id="imgPost" onError="this.onerror=null;this.src='/js/img/user.png';" width="50" height="50" alt="">
                             </div>
                             <div class="p-2">
                                 <a href="#" data-toggle="modal" data-target="#postModal" onclick="resetPost()">
@@ -76,7 +76,7 @@
                     <div class="card-header bgGeneral">
                         Welcome
                     </div>
-                    <img class="card-img-top" src="" alt="Profile Photo" id="imgProfile">
+                    <img class="card-img-top" src="" onError="this.onerror=null;this.src='/js/img/user.png';"  alt="Profile Photo" id="imgProfile">
                     <div class="card-body">
                         <h6 id="nameBar"></h6>
                         <hr>
@@ -111,7 +111,7 @@
         <div class="modal-content">
             <div class="modal-header btnBgGeneral ">
                 <div class="block">
-                    <img src="" alt="Photo Profile" id="chat-title-img">
+                    <img src="" alt="Photo Profile" onError="this.onerror=null;this.src='/js/img/user.png';" id="chat-title-img">
                     <h4 class="modal-title text-description-2" id="chat-title"></h4>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">×</button>

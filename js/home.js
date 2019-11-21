@@ -33,12 +33,6 @@ const photoProfile = new PhotoProfile();
 const notificationUi = new NotificationUi(document.querySelector('#notificationIcon'));
 const core = new Core()
 
-function imageExists(image_url){
-    var http = new XMLHttpRequest();
-    http.open('HEAD', image_url, false);
-    http.send();
-    return http.status != 404;
-}
 
 function createNotification(message, to) {
     notification.createNotification(baseURL + 'general_notifications', { userId: to, message: message }, stompClient)
@@ -46,11 +40,6 @@ function createNotification(message, to) {
             console.log('success create notification !');
         })
 }
-
-
-// if (!localStorage.getItem('username')) {
-//     window.location = baseURLWEB + 'login.php';
-// }
 
 postObj.getAllPost(globalUID)
     .then((data) => data.json())
@@ -86,14 +75,8 @@ async function getProfile(userId) {
                 document.querySelector('#imgPost').src = 'js/img/user.png';
                 imgProfile.src = 'js/img/user.png';
             } else {
-                if(!imageExists(data.data.url)){
-                    document.querySelector('#imgPost').src = data.data.url;
-                    imgProfile.src = data.data.url;
-                }else{
-                    document.querySelector('#imgPost').src = 'js/img/user.png';
-                    imgProfile.src = 'js/img/user.png';
-                }
-                
+                document.querySelector('#imgPost').src = data.data.url;
+                imgProfile.src = data.data.url;
             }
         })
 }
@@ -296,7 +279,7 @@ async function allPartner(userId) {
         .then((data) => {
             data.data.forEach((item) => {
 
-                if (item.photoProfile == null || !imageExists(item.photoProfile)) {
+                if (item.photoProfile == null ) {
                     item.photoProfile = 'js/img/user.png'
                 }
 
@@ -343,14 +326,8 @@ function chatRoom(event, name, photoProfile) {
     if(photoProfile == null){
         document.querySelector('#chat-title-img').src = 'js/img/user.png'
     }else{
-        if(!imageExists(photoProfile)){
-            document.querySelector('#chat-title-img').src = 'js/img/user.png'
-        }else{
-            document.querySelector('#chat-title-img').src = photoProfile
-        }
-       
+        document.querySelector('#chat-title-img').src = photoProfile
     }
-    
     partnerTamp = event.name
     selectChat(globalUID, event.name)
 }
@@ -506,7 +483,7 @@ function showInterest(id) {
         .then((data) => {
             document.querySelector('#interestBusiness').innerHTML = '';
             data.data.forEach((item)=>{
-                if(item.users.photoProfile == null || !imageExists(item.users.photoProfile)){
+                if(item.users.photoProfile == null ){
                     item.users.photoProfile = 'js/img/user.png'
                 }
                 document.querySelector('#interestBusiness').innerHTML += `

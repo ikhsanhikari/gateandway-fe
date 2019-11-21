@@ -3,12 +3,6 @@ class PostUi {
         this.list = list;
         this.commentContent = '';
     }
-    imageExists(image_url){
-        var http = new XMLHttpRequest();
-        http.open('HEAD', image_url, false);
-        http.send();
-        return http.status != 404;
-    }
 
     render(data) {
         var listPost = data.data;
@@ -17,18 +11,14 @@ class PostUi {
             this.commentContent = ``;
             item.firstComments.forEach((item) => {
                 var urlPhotoComment = ``
-                if (item.userComments.photoProfile == null) {
+                if (item.userComments.photoProfile == null ) {
                     urlPhotoComment = `js/img/user.png`;
                 } else {
-                    if(!imageExists(item.userComments.photoProfile)){
-                        urlPhotoComment = `js/img/user.png`;
-                    }else{
-                        urlPhotoComment = item.userComments.photoProfile;
-                    }
+                    urlPhotoComment = item.userComments.photoProfile;
                 }
                 this.commentContent += `<div class="card">
                         <div class="card-body text-description block-comment">
-                            <img src="`+ urlPhotoComment + `" alt="">
+                            <img src="`+ urlPhotoComment + `" onError="this.onerror=null;this.src='/js/img/user.png';" alt="">
                             <h4><a href="`+ baseURLWEB + `?username=` + item.userComments.username + `" style="color:black">` + item.userComments.firstName + `</a> 
                              <span class="text-description" >`+ dateFns.distanceInWords(new Date(item.createdAt), new Date()) + `</span>
                             <br><br><br><p >`+ item.firstComment + `
@@ -39,22 +29,15 @@ class PostUi {
             })
 
             var urlPhoto = ``
-            if (item.users.photoProfile == null ) {
+            if (item.users.photoProfile == null) {
                 urlPhoto = `js/img/user.png`;
             } else {
-                if(!imageExists(item.users.photoProfile)){
-                    urlPhoto = `js/img/user.png`;
-                }else{
-                    urlPhoto = item.users.photoProfile;
-                }
+                urlPhoto = item.users.photoProfile;
             }
 
             postPhoto = ``;
             if(item.urlPhoto!=null && item.urlPhoto!=''){
-                if(!imageExists(item.urlPhoto)){
-                    item.urlPhoto = 'js/img/default_post_photo.png'
-                }
-                postPhoto = `<img class="card-img-top" src="`+item.urlPhoto+`" alt="Post Photo" >`;
+                postPhoto = `<img class="card-img-top" onError="this.onerror=null;this.src='/js/img/default_post_photo.png';" src="`+item.urlPhoto+`" alt="Post Photo" >`;
             }
             var btnUpdatePost = ``
             if(localStorage.getItem('uid')==item.users.id){
@@ -83,7 +66,7 @@ class PostUi {
                     <div class="card">
                         `+btnUpdatePost+`
                         <div class="card-header bgGeneral block">
-                        <img src="`+ urlPhoto + `" alt="">
+                        <img src="`+ urlPhoto + `" alt="" onError="this.onerror=null;this.src='/js/img/user.png';" >
                             <h4> <a href="`+ baseURLWEB + `?username=` + item.users.username + `" style="color:black"> ` + item.users.firstName + ` ` + item.users.lastName + ` </a> <br> <span class="text-description">` + dateFns.distanceInWords(new Date(item.createdAt), new Date()) + `</span><h4>
                         </div>
                         `+postPhoto+`

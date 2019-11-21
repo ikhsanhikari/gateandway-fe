@@ -42,7 +42,7 @@ if (!findGetParameter('username')) {
                             background-repeat: no-repeat;
                             background-size: cover;" id="photoSampul">
                             <div class="col-md-6">
-                                <img src="" id="photoProfile" alt="Photo Profile" width="50%" height="162px"
+                                <img src="" onError="this.onerror=null;this.src='/js/img/user.png';" id="photoProfile" alt="Photo Profile" width="50%" height="162px"
                                     style="border-radius: 100px">
                             </div>
                         </div><br>
